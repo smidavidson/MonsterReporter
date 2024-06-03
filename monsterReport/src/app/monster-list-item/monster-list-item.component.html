@@ -1,0 +1,13 @@
+
+<td>{{monster.location_name | spacesCapitalize | titlecase }}</td>
+<td>{{monster.monster}}</td>
+<td>{{monster.time_reported | date : 'MMM dd h:mm a'}}</td>
+<!-- Conditionally prints OPEN/RESOLVED depending on status boolean value -->
+<td><span *ngIf="monster.status">OPEN</span><span *ngIf="!monster.status">RESOLVED</span></td>
+<!-- <td><button class="btn btn-outline-primary" (click)="onEdit()">EDIT</button></td> -->
+<td><a [routerLink]="[]" (click)="onMoreInfo()">MORE INFO</a></td>
+<td><a class="text-decoration-none" [routerLink]="[]" (click)="onDelete()">&#10060;</a></td>
+<!-- <td><button (click)="onDelete()">&#10060;</button></td> -->
+
+
+

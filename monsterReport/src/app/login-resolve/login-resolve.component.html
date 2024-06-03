@@ -1,0 +1,48 @@
+<form
+    [formGroup]="resolveForm"
+    (ngSubmit)="onSubmit(resolveForm.value)"
+>
+    <fieldset
+        class="d-grid gap-2 col-12"
+    >
+        <div class="text-center">
+            <legend>RESOLVE MONSTER</legend>
+        </div>
+        <div class="text-center">
+            <p>Monster ID: {{ id }}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password (BaggyJeans)</label>
+            <input
+                type="password"
+                class="form-control"
+                name="password"
+                formControlName="password"
+            >
+        </div>
+
+        <!-- [disabled] property (default angular) disables a button if form is invalid (is form is null) -->
+        <button
+            class="btn btn-primary"
+            [disabled]="!resolveForm.valid || isResolved"
+
+            type="submit"
+        >
+            <span *ngIf="showResolvedText; else resolveButton" class="bi">Resolved &#9989;</span>
+        </button>
+        <ng-template #resolveButton>Resolve</ng-template>
+        
+        <div class="text-center mb-5">
+            <p *ngIf="showWrongPasswordText">Incorrect password!</p>
+            <p *ngIf="!showWrongPasswordText"><br></p>
+        </div>
+        
+
+
+        <button type="button" class="btn btn-danger" [routerLink]="'/map'">Back to map</button>
+
+
+    </fieldset>
+
+</form>

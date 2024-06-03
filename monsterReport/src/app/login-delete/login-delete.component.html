@@ -1,0 +1,45 @@
+<form
+    [formGroup]="deleteForm"
+    (ngSubmit)="onSubmit(deleteForm.value)"
+>
+    <fieldset
+        class="d-grid gap-2 col-12"
+    >
+        <div class="text-center">
+            <legend>DELETE MONSTER</legend>
+        </div>
+        <div class="text-center">
+            <p>Monster ID: {{ id }}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password (BaggyJeans)</label>
+            <input
+                type="password"
+                class="form-control"
+                name="password"
+                formControlName="password"
+            >
+        </div>
+
+        <!-- Delete button -->
+        <button
+            class="btn btn-warning"
+            [disabled]="!deleteForm.valid || isDeleted"
+            type="submit"
+        >
+            <span *ngIf="showDeletedText; else deleteButton" class="bi">Deleted &#9989;</span>
+        </button>
+        <ng-template #deleteButton>Delete</ng-template>
+
+        <div class="text-center mb-5">
+            <p *ngIf="showWrongPasswordText">Incorrect password!</p>
+            <p *ngIf="!showWrongPasswordText"><br></p>
+        </div>
+
+        <button type="button" class="btn btn-danger" [routerLink]="'/map'">Back to map</button>
+
+
+    </fieldset>
+
+</form>

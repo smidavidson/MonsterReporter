@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+#appContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* border: 3px solid red; */
+    width: 100%;
+}
+

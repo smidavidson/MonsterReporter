@@ -1,0 +1,31 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">
+                <a class="link-underline-primary" (click)="sortLocation()"><strong>Location</strong></a>
+            </th>
+            <th scope="col">
+                <a class="link-underline-primary" (click)="sortMonster()"><strong>Cryptid Spotted</strong></a>
+            </th>
+            <th scope="col">
+                <a class="link-underline-primary" (click)="sortTimeReported()"><strong>Time Reported</strong></a>
+            </th>
+            <th scope="col">
+                <a class="link-underline-primary" (click)="sortStatus()"><strong>Status</strong></a>
+            </th>
+            <th scope="col"></th> <!--For more info-->
+            <th scope="col"></th> <!--For delete button-->
+        </tr>
+    </thead>
+    <tbody>
+        <!-- child class list item for table rows -->
+        <tr app-monster-list-item 
+        *ngFor="let monster of monsterReportList" 
+        [monster]="monster"
+        (delete)="onMonsterDelete($event)"
+        >
+
+        </tr>
+    </tbody>
+</table>
+

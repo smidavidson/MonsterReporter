@@ -1,0 +1,142 @@
+<form
+    [formGroup]="reportForm"
+    (ngSubmit)="onSubmit(reportForm.value)"
+>
+    <fieldset
+        class="d-grid gap-2 col-12"
+    >
+        <legend>REPORT MONSTER</legend>
+
+        <div class="form-group">
+            <label for="witness">Witness</label>
+            <input
+                type="text"
+                class="form-control"
+                name="witness"
+                placeholder="Name of Witness"
+                formControlName="witness"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="phone_num">Witness Phone # (10 digits)</label>
+            <input
+                type="number"
+                class="form-control"
+                name="phone_num"
+                placeholder="Phone Number"
+                formControlName="phone_num"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="monster">Cryptid</label>
+            <input
+            type="text"
+            class="form-control"
+            name="monster"
+            placeholder="Cryptid Name"
+            formControlName="monster"
+            >
+        </div>
+
+        <!-- Known Location -->
+        <div class="form-group">
+            <label for="locationSelect">Select Previously Reported Locations</label>
+            <select
+            (change)="onSelect($event)"
+            name="locationSelect"
+            class="form-select"
+            >
+                <option [ngValue]="newLocSelected">New Location</option>
+                <option *ngFor="let loc of locations" [ngValue]="loc.location_name">
+                    {{ loc.location_name | spacesCapitalize | titlecase }}
+                </option>
+            </select>
+        </div>
+
+        <!-- Location name -->
+        <div class="form-group">
+            <label for="monster">New Location</label>
+            <input
+                [attr.disabled]="newLocSelected ? null : true"
+                type="text"
+                class="form-control"
+                name="location_name"
+                placeholder="Location"
+                formControlName="location_name"
+            >
+        </div>
+
+        <!-- Coordinates of locaiton -->
+        <div class="form-group">
+            <label for="monster">Coordinates (to 3 decimal places)</label>
+            <input
+                [attr.disabled]="newLocSelected ? null : true"
+                type="number"
+                class="form-control"
+                name="coord_x"
+                placeholder="N&deg;"
+                formControlName="coord_x"
+            >
+            <input
+                [attr.disabled]="newLocSelected ? null : true"
+                type="number"
+                class="form-control"
+                name="coord_y"
+                placeholder="W&deg;"
+                formControlName="coord_y"
+            >
+        </div>
+
+        <!-- Picture -->
+        <div class="form-group">
+            <label for="monster">Picture</label>
+            <input
+                type="text"
+                class="form-control"
+                name="picture"
+                placeholder="Image URL"
+                formControlName="picture"
+            >
+        </div>
+
+        <!-- Additional info -->
+        <div class="form-group">
+            <label for="monster">Additional Info</label>
+            <input
+                type="text"
+                class="form-control"
+                name="addInfo"
+                placeholder="Additional Info"
+                formControlName="addInfo"
+            >
+        </div>
+
+        <!-- [disabled] property (default angular) disables a button if form is invalid (is form is null) -->
+        <button
+            class="btn btn-primary mb-5"
+            [disabled]="!reportForm.valid"
+            (click)="showReported()"
+            type="submit"
+        >
+            <!-- Report -->
+            <span *ngIf="showReportedText; else reportButton" class="bi">Reported &#9989;</span>
+        </button>
+        <ng-template #reportButton>Report</ng-template>
+
+        <button type="button" class="btn btn-danger" [routerLink]="'/map'">Back to map</button>
+
+
+    </fieldset>
+
+    <p>
+        Note: Bug may occur where report button<br>
+        is unavailable despite valid inputs :( <br>
+        Update any other field to fix problem
+    </p>
+
+
+
+</form>
+

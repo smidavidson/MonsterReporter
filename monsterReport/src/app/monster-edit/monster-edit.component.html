@@ -1,0 +1,41 @@
+<div class="text-center">
+    <img *ngIf="monster.picture" src="{{ monster.picture }}"/>
+    <p *ngIf="!monster.picture"><i>No image provided</i></p>
+</div>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Cryptid Name:</th>
+            <td>{{ monster.monster}}</td>
+        </tr>
+        <tr>
+            <th>Location</th>
+            <td>{{ monster.location_name | spacesCapitalize | titlecase }}</td>
+        </tr>
+        <tr>
+            <th>Reported by:</th>
+            <td>{{ monster.witness }} ({{ monster.phone_num }})</td>
+        </tr>
+        <tr>
+            <th>Status:</th>
+            <td>
+                <span *ngIf="monster.status">OPEN <a [routerLink]="[]" (click)="onChange()">CHANGE</a></span>
+                <span *ngIf="!monster.status">RESOLVED</span>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">Additional Info: </th>
+        </tr>
+        <tr>
+            <td colspan="2" *ngIf="!monster.addInfo"><i>No additional info provided</i></td>
+            <td colspan="2" *ngIf="monster.addInfo">{{ monster.addInfo }}</td>
+        </tr>
+    </tbody>
+
+    
+</table>
+
+<div class="text-center">
+    <button type="button" class="btn btn-danger" [routerLink]="'/map'">Back to map</button>
+</div>
